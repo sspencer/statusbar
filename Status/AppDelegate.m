@@ -26,7 +26,7 @@
     // Insert code here to initialize your application
 
     _colors = [self createColors];
-    _socket = [self createSocket:UDP_PORT];
+    _socket = [self createSocket:[self getPort:UDP_PORT]];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
@@ -111,7 +111,9 @@
         return nil;
     }
 
-    NSLog(@"UDP Port listening on %lu", port);
+    NSString *msg =[NSString stringWithFormat:@"StatusBar listening on UDP Port %lu", port];
+    fprintf(stdout, "%s\n", [msg UTF8String]);
+    //NSLog(@"%@", msg);
     return sock;
 }
 
@@ -136,5 +138,33 @@
     return [Status statusWithLabel:@"" color:self.colors[@"off"]];
 }
 
+-(NSUInteger) getPort:(NSUInteger)port {
+    //NSString *p = [NSString stringWithFormat:@"%d", defaultPort];
+
+    NSArray *args = [[NSProcessInfo processInfo] arguments];
+    NSLog(@"ARGS: %@", args);
+    
+    NSUInteger cnt = [args count];
+    NSUInteger newPort = 0;
+    for (int i = 0; i < cnt; i++) {
+        NSString *arg = args[i];
+        if (([arg isEqualToString:@"-p"] || [arg isEqualToString:@"-port"]) && i < (cnt-1)) {
+            NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+            fmt.numberStyle = NSNumberFormatterDecimalStyle;
+            NSNumber *number = [fmt numberFromString:args[i+1]];
+            newPort = [number integerValue];
+        } else if ([arg isEqualToString:@"-h"] || [arg isEqualToString:@"-help"]) {
+            NSString *msg = @"USAGE: StatusBar [-port <port>]";
+            fprintf(stdout, "%s\n", [msg UTF8String]);
+            [NSApp terminate:self];
+        }
+    }
+
+    if (newPort < 1000 || newPort > 65535) {
+        return port;
+    }
+
+    return newPort;
+}
 
 @end

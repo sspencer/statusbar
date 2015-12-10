@@ -27,12 +27,11 @@
 
     _colors = [self createColors];
     _socket = [self createSocket:[self getPort:UDP_PORT]];
-}
 
-- (void)applicationDidBecomeActive:(NSNotification *)notification {
-    if (_viewController==nil) {
-        _viewController = (ViewController *)[[NSApplication sharedApplication] mainWindow].contentViewController;
-    }
+    _viewController = (ViewController *)[[NSApplication sharedApplication] mainWindow].contentViewController;
+
+    NSWindow *mainWindow = [[[NSApplication sharedApplication] windows] objectAtIndex:0];
+    _viewController =(ViewController *) mainWindow.contentViewController;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -143,7 +142,7 @@
 
     NSArray *args = [[NSProcessInfo processInfo] arguments];
     NSLog(@"ARGS: %@", args);
-    
+
     NSUInteger cnt = [args count];
     NSUInteger newPort = 0;
     for (int i = 0; i < cnt; i++) {

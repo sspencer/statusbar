@@ -1,8 +1,8 @@
 # StatusBar
 
-StatusBar is an OS X status indicator app.  It is inspired by [AnyBar](https://github.com/tonsky/AnyBar), but differs by running in a app rather than the OS X menubar.  The status indictators, free from the confines of the menubar, are much, much larger.  And have labels.  And can have siblings, side by side.
+StatusBar is an OS X status indicator app.  It is inspired by [AnyBar](https://github.com/tonsky/AnyBar), but differs by running in a app window rather than the OS X menubar.  The status indictators, free from the confines of the menubar, are much, much larger.  And have labels.  And can have siblings, side by side.  The status indicators are, at least for now, fixed in size (180x180) and only drawn horizontally, left to right.
 
-Like AnyBar, the indicators can be set by sending a message over UDP.  For no good reason, StatusBar currently runs on UDP Port 9099.  One near term feature enhance is for this to be user settable via the command line.  
+Like AnyBar, the indicators can be set by sending a message over UDP.  For no good reason, StatusBar currently runs on UDP Port 9099.  One near term feature enhance is for this to be user settable via the command line.
 
 ## Usage
 
@@ -22,7 +22,7 @@ For example:
 
 Produces:
 
-<img src="screenshot.png?raw=true" />    
+<img src="screenshot.png?raw=true" />
 
 The following colors are understood:
 

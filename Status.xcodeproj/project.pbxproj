@@ -337,6 +337,7 @@
 				AA7E37391C18FF9B0083968B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

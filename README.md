@@ -20,6 +20,34 @@ For example:
 
     $ go run status.go "red:Tomato,orange:Tangerine,green:Apple"
 
+Have not checked in the above code, but it is based on a lightly modified [anybar go repo](https://github.com/justincampbell/anybar).
+
+The meat of the code:
+
+```go
+const DefaultPort = 9099
+
+func Send(msg string) {
+	address := fmt.Sprintf("localhost:%v", DefaultPort)
+	conn, err := net.Dial("udp", address)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer conn.Close()
+
+	cnt, err := conn.Write([]byte(msg))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Printf("Sent %d bytes\n", cnt)
+}
+```
+
+
+
 Produces:
 
 <img src="screenshot.png?raw=true" />

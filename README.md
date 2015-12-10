@@ -6,20 +6,9 @@ Like AnyBar, the indicators can be set by sending a message over UDP.  For no go
 
 ## Usage
 
-StatusBar understands the commands in the following form:
+Once launched, send a message from the command line to StatusBar:
 
-    color1,color2,color3     # one or mores colors
-
-Or
-
-    color1:label1,color2:label2
-
-Or any combination of the above.
-
-For example:
-
-    $ go run status.go "red:Tomato,orange:Tangerine,green:Apple"
-
+    echo -n "red:Tomato,orange:Tangerine,green:Apple" | nc -4u -w0 localhost 9099
 
 Produces:
 
@@ -38,11 +27,20 @@ The following colors are understood:
 * yellow
 * off
 
-## Sample Client Snippet
+Any color not understood is rendered as **off**, which shows as a transparent indicator.
 
-Have not checked client code yet, but to test StatusBar, I just lightly modified the [anybar go repo](https://github.com/justincampbell/anybar).
+StatusBar understands the commands in the following form:
 
-The meat of the code:
+    color1,color2,color3     # one or mores colors
+
+Or
+
+    color1:label1,color2:label2
+
+
+## Client Support
+
+It is really easy to control StatusBar in the language of your choice.  For example, using a lightly modified version of the [anybar Go client](https://github.com/justincampbell/anybar), you'd just need a function like this:
 
 ```go
 const DefaultPort = 9099

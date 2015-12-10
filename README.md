@@ -20,7 +20,27 @@ For example:
 
     $ go run status.go "red:Tomato,orange:Tangerine,green:Apple"
 
-Have not checked in the above code, but it is based on a lightly modified [anybar go repo](https://github.com/justincampbell/anybar).
+
+Produces:
+
+<img src="screenshot.png?raw=true" />
+
+The following colors are understood:
+
+* black
+* blue
+* cyan
+* green
+* magenta
+* orange
+* purple
+* red
+* yellow
+* off
+
+## Sample Client Snippet
+
+Have not checked client code yet, but to test StatusBar, I just lightly modified the [anybar go repo](https://github.com/justincampbell/anybar).
 
 The meat of the code:
 
@@ -46,21 +66,3 @@ func Send(msg string) {
 }
 ```
 
-
-
-Produces:
-
-<img src="screenshot.png?raw=true" />
-
-The following colors are understood:
-
-* black
-* blue
-* cyan
-* green
-* magenta
-* orange
-* purple
-* red
-* yellow
-* off
